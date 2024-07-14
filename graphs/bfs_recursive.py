@@ -25,13 +25,13 @@ def bfs(graph, start):
     print("BFS traversal:", output)
     #print()
 
-# Define a graph
+# defined a graph
 graph = {
     'A': ['B', 'C'],
-    'B': ['D', 'E'],
-    'C': ['F'],
-    'D': [],
-    'E': ['F'],
+    'B': ['D'],
+    'C': [],
+    'D': ['E', 'F'],
+    'E': [],
     'F': []
 }
 
