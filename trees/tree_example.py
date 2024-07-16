@@ -44,9 +44,9 @@ class BinaryTree:
             elif node.right is None:
                 return node.left
 
-        min_node = self._find_min(node.right)
-        node.value = min_node.value
-        node.right = self._delete_recursively(node.right, min_node.value)
+            min_node = self._find_min(node.right)
+            node.value = min_node.value
+            node.right = self._delete_recursively(node.right, min_node.value)
 
         return node
 
@@ -77,22 +77,20 @@ class BinaryTree:
 
 
 
-#example usage
+# Example usage
 tree = BinaryTree()
 
-# Insert Nodes
+# Insert nodes
 nodes_to_insert = [5, 3, 7, 2, 4, 6, 8]
 for node in nodes_to_insert:
     tree.insert(node)
 
-#print initial tree
+print("Initial tree:")
 tree.print_tree()
 
-##Print in order
 print("\nInorder traversal:", tree.inorder_traversal())
 
-print("---------Now Deleting a node-------")
-##Delete 3
+# Delete a node
 tree.delete(3)
 
 print("\nTree after deleting 3:")
