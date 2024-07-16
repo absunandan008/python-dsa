@@ -50,7 +50,7 @@ class BinaryTree:
 
         return node
 
-    def _find_min(self, node, value):
+    def _find_min(self, node):
         current = node
         while current.left:
             current = current.left
@@ -90,3 +90,12 @@ tree.print_tree()
 
 ##Print in order
 print("\nInorder traversal:", tree.inorder_traversal())
+
+print("---------Now Deleting a node-------")
+##Delete 3
+tree.delete(3)
+
+print("\nTree after deleting 3:")
+tree.print_tree()
+
+print("\nInorder traversal after deletion:", tree.inorder_traversal())
