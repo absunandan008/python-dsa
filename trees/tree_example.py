@@ -39,11 +39,16 @@ class BinaryTree:
         elif value > node.value:
             node.right = self._delete_recursively(node.right, value)
         else:
+            # Node to delete found
+
+            # Case 1 & 2: No child or one child to the node which is being deleted
             if node.left is None:
                 return node.right
             elif node.right is None:
                 return node.left
 
+            # Case 3: Two children, goto right, find the minimum of tree of right node
+            # replace current node with that value and delete that value from right tree
             min_node = self._find_min(node.right)
             node.value = min_node.value
             node.right = self._delete_recursively(node.right, min_node.value)
