@@ -34,7 +34,7 @@ class TreeNode:
                 node.right = TreeNode(value)
             else:
                 self._recursive_insert(node.right,value)
-    def invertTree(self, root):
+    def invertTree_NotOptimal(self, root):
         #NonOptimal solution. Go through tree and then swap the left and right nodes
         if root is None:
             return root
@@ -47,6 +47,13 @@ class TreeNode:
         root.left = root.right
         root.right = dummy
 
+        return root
+
+    def invert_tree_optimal(self, root):
+        if root is None:
+            return root
+
+        root.left, root.right = self.invert_tree_optimal(root.right), self.invert_tree_optimal(root.left)
         return root
 
 
@@ -62,7 +69,8 @@ for node in nodes_to_insert:
 print("Initial tree:")
 tree.print_tree()
 
-tree.invertTree(tree)
+#tree.invertTree_NotOptimal(tree)
+tree.invert_tree_optimal(tree)
 
 print("Inverted  tree:")
 tree.print_tree()
