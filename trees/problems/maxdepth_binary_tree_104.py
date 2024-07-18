@@ -9,10 +9,26 @@ class TreeNode:
         self.left = left
         self.right = right
 class Solution:
-    def maxDepthNotOptimal(self, root: Optional[TreeNode]) -> int:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
         if root is None:
             return 0
 
-        ldepth = self.maxDepthNotOptimal(root.left)
-        rdepth = self.maxDepthNotOptimal(root.right)
+        ldepth = self.maxDepth(root.left)
+        rdepth = self.maxDepth(root.right)
         return 1 + max(ldepth, rdepth)
+
+    def max_depth_with_stack(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+
+        stack = ([root, 1])
+        max_depth = 1
+
+        while stack:
+            node, depth = stack.pop()
+            max_depth = max(max_depth, depth)
+
+            if node.left:
+                stack.append((node.left, depth + 1))
+            if node.right:
+                stack.append((node.right, depth+1))
