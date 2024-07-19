@@ -10,10 +10,22 @@ class TreeNode:
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
 
-        def dfs(root):
-            if root is None: return [True, 0]
+        balanced = [True]
 
-            left, right = dfs(root.left),dfs(root.right)
-            balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)
-            return [balanced, 1 + max(left[0], right[0])]
-        return dfs(root)[0]
+        def dfs(root):
+            if not root:
+                return 0
+
+            left = dfs(root.left)
+            if balanced[0] is False:
+                return 0
+            right = dfs(root.right)
+
+            if abs(left - right) > 1:
+                balanced[0] = False
+                return 0
+
+            return 1 + max(left, right)
+
+        dfs(root)
+        return balanced[0]
