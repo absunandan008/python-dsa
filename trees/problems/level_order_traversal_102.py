@@ -10,18 +10,21 @@ class TreeNode:
         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        #Initialize Output
         output = []
         if root is None:
             return output
-
+        #Add root in queue
         queue = deque[root]
         while queue:
+            #We will need to find the numbers of nodes on each level
             level_size = len(queue)
             level_output = []
 
             for level_travese in range(level_size):
                 node = queue.popleft()
                 level_output.append(node.val)
+                #for each node of level, check if there is anything left or right and then add it in queue
                 if node.left:
                     queue.append(node.left)
                 if node.right:

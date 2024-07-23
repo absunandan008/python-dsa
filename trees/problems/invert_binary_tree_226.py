@@ -57,20 +57,20 @@ class TreeNode:
         return root
 
 
+if __name__ == "__main__":
+    # Example usage
+    tree = TreeNode()
 
-# Example usage
-tree = TreeNode()
+    # Insert nodes
+    nodes_to_insert = [5, 3, 7, 2, 4, 6, 8]
+    for node in nodes_to_insert:
+        tree.insert(node)
 
-# Insert nodes
-nodes_to_insert = [5, 3, 7, 2, 4, 6, 8]
-for node in nodes_to_insert:
-    tree.insert(node)
+    print("Initial tree:")
+    tree.print_tree()
 
-print("Initial tree:")
-tree.print_tree()
+    #tree.invertTree_NotOptimal(tree)
+    tree.invert_tree_optimal(tree)
 
-#tree.invertTree_NotOptimal(tree)
-tree.invert_tree_optimal(tree)
-
-print("Inverted  tree:")
-tree.print_tree()
+    print("Inverted  tree:")
+    tree.print_tree()
