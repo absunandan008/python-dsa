@@ -13,7 +13,9 @@ class Solution:
         output = []
         if root is None:
             return output
-
+        #for right side view we go and do a bfs and at each level,
+        # we compare the level lenth with iteration will we reach end
+        # and then take that node
         queue = collections.deque([root])
         while queue:
             level_length = len(queue)
