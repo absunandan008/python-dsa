@@ -25,5 +25,6 @@ class Solution:
         if len(output) != len(graphCourses):
             return []
         else:
+            #reverse the output before sending it out
             output.reverse()
             return output
