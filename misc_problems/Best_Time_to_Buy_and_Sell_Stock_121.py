@@ -10,3 +10,17 @@ class Solution:
                 minInWindow = min(minInWindow,prices[u])
                 max_Profit = max(max_Profit, prices[u+1] - minInWindow)
         return max_Profit
+
+
+
+    def maxProfitOptimized(self, prices: List[int]) -> int:
+
+        left,right = 0,1
+        mprofit = 0
+        while right < len(prices):
+            if prices[left] < prices[right]:
+                mprofit = max(mprofit, prices[right] - prices[left])
+            else:
+                left = right
+            right +=1
+        return mprofit
