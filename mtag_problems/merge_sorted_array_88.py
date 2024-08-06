@@ -45,49 +45,38 @@ class Solution:
                 nums1[m+n-1] = nums2[n-1]
                 n -= 1
 
+
 class TestMergeSortedArrays(unittest.TestCase):
     def setUp(self):
         self.solution = Solution()
 
-    def test_example1(self):
-        nums1 = [1, 2, 3, 0, 0, 0]
-        m = 3
-        nums2 = [2, 5, 6]
-        n = 3
+    def run_test(self, nums1, m, nums2, n, expected):
+        print(f"\nInput:")
+        print(f"nums1 = {nums1}, m = {m}")
+        print(f"nums2 = {nums2}, n = {n}")
+
         self.solution.merge(nums1, m, nums2, n)
-        self.assertEqual(nums1, [1, 2, 2, 3, 5, 6])
+
+        print(f"Output: {nums1}")
+        print(f"Expected: {expected}")
+
+        self.assertEqual(nums1, expected)
+
+    def test_example1(self):
+        self.run_test([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3, [1, 2, 2, 3, 5, 6])
 
     def test_example2(self):
-        nums1 = [1]
-        m = 1
-        nums2 = []
-        n = 0
-        self.solution.merge(nums1, m, nums2, n)
-        self.assertEqual(nums1, [1])
+        self.run_test([1], 1, [], 0, [1])
 
     def test_example3(self):
-        nums1 = [0]
-        m = 0
-        nums2 = [1]
-        n = 1
-        self.solution.merge(nums1, m, nums2, n)
-        self.assertEqual(nums1, [1])
+        self.run_test([0], 0, [1], 1, [1])
 
     def test_empty_nums1(self):
-        nums1 = [0, 0, 0]
-        m = 0
-        nums2 = [1, 2, 3]
-        n = 3
-        self.solution.merge(nums1, m, nums2, n)
-        self.assertEqual(nums1, [1, 2, 3])
+        self.run_test([0, 0, 0], 0, [1, 2, 3], 3, [1, 2, 3])
 
     def test_empty_nums2(self):
-        nums1 = [1, 2, 3]
-        m = 3
-        nums2 = []
-        n = 0
-        self.solution.merge(nums1, m, nums2, n)
-        self.assertEqual(nums1, [1, 2, 3])
+        self.run_test([1, 2, 3], 3, [], 0, [1, 2, 3])
+
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
