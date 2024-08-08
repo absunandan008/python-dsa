@@ -21,3 +21,13 @@ class Solution:
             prev = current
             current = current_copy
         return prev
+
+    def reverseListRecursive(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+
+        p = self.reverseListRecursive(head.next)
+        head.next.next = head
+        head.next = None
+        return p
+
