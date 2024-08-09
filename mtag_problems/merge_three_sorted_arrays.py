@@ -38,7 +38,10 @@ def merge_three_sorted_arrays(arr1, arr2, arr3):
 
 
 # Example usage
-arr1 = [1, 4, 7, 9]
-arr2 = [2, 5, 8]
-arr3 = [3, 6, 10]
+arr1 = [ 1, 2, 41, 52, 84 ]
+arr2 = [ 1, 2, 41, 52, 67 ]
+arr3 = [ 1, 2, 41, 52, 67, 85 ]
+#arr1 = [1, 4, 7, 9]
+#arr2 = [2, 5, 8]
+#arr3 = [3, 6, 10]
 print(merge_three_sorted_arrays(arr1, arr2, arr3))
