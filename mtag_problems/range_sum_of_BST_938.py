@@ -26,9 +26,9 @@ class Solution:
             if node and low <= node.val <= high:
                 output += node.val
 
-            if node.left:
+            if node.left and node.val > low:
                 queue.append(node.left)
-            if node.right:
+            if node.right and node.val < high:
                 queue.append(node.right)
 
         return output
