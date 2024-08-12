@@ -16,7 +16,7 @@ class Solution:
         #then 2 pointer approach, calculate lo and hi
         # while lo < hi, calculate sum equal to nums[i] + nums[lo] + nums[hi]
         # if sum == 0, add it to result set else if sum > 0 then reduce hi by 1 else increase lo by 1
-        # sum = 0, while lo < hi and also lo[i] == lo[i-1], increase lo
+        # sum = 0, while lo < hi and also lo[i] == lo[i-1], increase lo by 1
         nums.sort()
         output = []
         for i in range(len(nums)-2):
