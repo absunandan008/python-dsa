@@ -21,10 +21,12 @@ class Solution:
         """
         index = -1
 
-        #first go from end to begining, if u find something whose next is smaller
-        # then that mean we have found a prefix where the next element we can change
+        # first go from end to begining, if u find something whose next is smaller
+        # [1,2,3, 1, 5,4,3,0,0] -- talking about 1 here
+        # then that mean we have found a prefix where the next element we can change -
+        # so we will change 1 with 3 -- [123 3 54 1 00]
         # to find new permutaion. This also mean numbers after the index we have found is
-        # all are larger and sorted. But if we did find an index then just reverse the nums
+        # all are larger and sorted. But if we did find an index then just reverse the nums [123 3 1 4500]
 
         for i in range(len(nums)-2, -1, -1):
             if nums[i] < nums[i+1]:
