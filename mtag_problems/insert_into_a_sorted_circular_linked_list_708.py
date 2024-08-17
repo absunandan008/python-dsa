@@ -20,6 +20,17 @@ class Node:
 
 
 class Solution:
+    """
+    Basically treat end of list where prev > curr. Prev is head and curr is head.next
+    if head was none, create a new node and then newnode.next = newnode and return newnode
+    not create prev,curr = head, head.next AND create a variable toInsert = False
+    not if insert val is between prev and curr value then assign prev.next = Node(insertVal, curr) and return head
+    else
+    if reached tail of list meaning prev.val>curr.val, then insert then new value here if new value is greater
+    than tail(aka prev.val) and less then head(aka curr) assign prev.next = Node(insertVal, curr) and return head.
+    now if nothing worked and we prev == head then break from loop.
+    at end AGAIN assign prev.next = Node(insertVal, curr) and return head beacuse we did not found it in loop
+    """
     def insert(self, head: 'Optional[Node]', insertVal: int) -> 'Node':
         #When there is no element in List
         if not head:
