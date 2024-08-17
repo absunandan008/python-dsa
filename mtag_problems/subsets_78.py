@@ -31,6 +31,7 @@ class Solution:
         return result
     #Time O(2**N)
     #space O(N)
+
     def subsetsIteravtive(self, nums: List[int]) -> List[List[int]]:
         subsets = [[]]
 
@@ -53,4 +54,12 @@ class Solution:
                     sub_result.append(nums[j])
             subset.append(sub_result)
         return subset
+
+
+
+s = Solution()
+# nums = [1,2,2]
+# print(s.subsets([1, 2, 3]))
+nums = [1,2]
+print( s.subsets(nums) )
 

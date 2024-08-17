@@ -34,7 +34,7 @@ def combine(n, k):
     return result
 
 
-print(combine(4, 2))
+#print(combine(4, 2))
 
 
 def subsets(nums):
@@ -57,5 +57,6 @@ def subsets(nums):
     return result
 
 
-#print(subsets([1, 2, 3]))
+print(subsets([1, 2, 3]))
+#print(subsets([1, 2]))
 
