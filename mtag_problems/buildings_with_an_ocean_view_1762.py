@@ -13,6 +13,16 @@ from typing import List
 
 class Solution:
     def findBuildings(self, heights: List[int]) -> List[int]:
+        answer = []
+        max_height = -1
+        for i in range(len(heights)-1, -1, -1):
+            if heights[i] > max_height:
+                answer.append(i)
+                max_height = heights[i]
+        answer.reverse()
+        return answer
+
+    def findBuildingsNormalLeftToRight(self, heights: List[int]) -> List[int]:
         lengthofStack = len(heights)
         stack = []
 
