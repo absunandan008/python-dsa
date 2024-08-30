@@ -11,6 +11,22 @@ The test cases are generated so that the answer will be less than or equal to 2 
 """
 
 class Solution:
+    def uniquePaths_dfs_memo(self, m: int, n: int) -> int:
+        self.memo = {}
+        self.memo[(m-1,n-1)] = 1
+        self.dfs_with_memo(m,n,0,0)
+        return self.memo[(0,0)]
+
+    def dfs_with_memo(self, m, n, x,y):
+        if (x,y) in self.memo:
+            return self.memo[(x,y)]
+
+        if 0 <= x < m and 0 <= y < n:
+            self.memo[(x,y)] = self.dfs_with_memo(m,n,x+1,y) + self.dfs_with_memo(m,n,x,y+1)
+            return self.memo[(x,y)]
+
+        return 0
+
     def uniquePaths(self, m: int, n: int) -> int:
         dp_grid = [[1] * n for _ in range(m)]
 
