@@ -55,6 +55,19 @@ class Solution:
             subset.append(sub_result)
         return subset
 
+    def subsets_simplebacktracking(self, nums: List[int]) -> List[List[int]]:
+        answers = []
+        def backtracking(index,path):
+            answers.append(path.copy())
+
+            for i in range(index, len(nums)):
+                path.append(nums[i])
+                backtracking(i+1,path)
+                path.pop()
+
+        backtracking(0, [])
+        return answers
+
 
 
 s = Solution()
