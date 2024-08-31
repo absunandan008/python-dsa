@@ -21,6 +21,38 @@ Output: 23
 
 class Solution:
     def calculate(self, s: str) -> int:
+        def helper(s, index):
+            stack = []
+            prev_sign = "+"
+            num = 0
+
+            while index < len(s):
+                cur_char = s[index]
+
+                if cur_char.isdigit():
+                    num = num * 10 + int(cur_char)
+
+                if cur_char == "(":
+                    num, index = helper(s, index + 1)
+
+                if cur_char in "+-" or cur_char == ")" or index == len(s) - 1:
+                    if prev_sign == "+":
+                        stack.append(num)
+                    elif prev_sign == "-":
+                        stack.append(-num)
+                    num = 0
+                    prev_sign = cur_char
+
+                if cur_char == ")":
+                    break
+
+                index += 1
+
+            return sum(stack), index
+
+        return helper(s, 0)[0]
+
+    def calculate_not_good(self, s: str) -> int:
         stack = []
         num = 0
         sign  = "+"

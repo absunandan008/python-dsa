@@ -22,3 +22,5 @@ class Solution:
                 count += prefix_dict[ prefix_sum - k ]
             prefix_dict[prefix_sum] = 1 + prefix_dict.get(prefix_sum, 0)
         return count
+#O(N) - Time
+#O(N) - Space
