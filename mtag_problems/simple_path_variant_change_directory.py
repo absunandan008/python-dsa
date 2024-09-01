@@ -28,8 +28,41 @@ def change_directory(current_path, new_path):
     # Ensure the path starts with '/'
     return '/' + final_path.lstrip('/')
 
+
+def cd(cwd, destination):
+    # Split paths into parts
+    cwd_parts = cwd.split('/')
+    dest_parts = destination.split('/')
+
+    # Initialize a list to keep track of the resulting path
+    path = []
+
+    # Start with the current working directory parts if it's an absolute path
+    if cwd.startswith('/'):
+        path = cwd_parts
+
+    # Navigate through the destination path parts
+    for part in dest_parts:
+        if part == '' or part == '.':
+            # Ignore empty and current directory components
+            continue
+        elif part == '..':
+            # Pop the last directory if we have directories to pop
+            if path and path[-1] != '':
+                path.pop()
+        else:
+            # Add the directory to the path
+            path.append(part)
+
+    # Join the path components to form the final path
+    final_path = '/' + '/'.join(filter(None, path))
+    return  final_path
 # Example usage
 print(change_directory("/home/user", "documents/.."))
+print(cd("/home/user", "documents/.."))
 print(change_directory("/home/user", "/var/log"))
+print(cd("/home/user", "/var/log"))
 print(change_directory("/home/user", "../documents/projects"))
+print(cd("/home/user", "../documents/projects"))
 print(change_directory("/", "home/user/./documents"))
+print(cd("/", "home/user/./documents"))
