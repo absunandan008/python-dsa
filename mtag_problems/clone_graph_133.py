@@ -30,20 +30,28 @@ class Solution:
     def cloneGraph(self, node: Optional["Node"]) -> Optional["Node"]:
         if node is None:
             return None
-        oldtoNew = {}
-        stack = [node]
+        old_to_new = {}
+        queue = collections.deque([node])
 
-        while stack:
-            current_node = stack.pop()
-            newNode = Node(current_node.val)
-            oldtoNew[current_node] = newNode
+        new_node = Node(node.val, None)
+        old_to_new[node] = new_node
 
-            for nei in current_node.neighbors:
-                if nei not in oldtoNew:
-                    stack.append(nei)
+        while queue:
+            cur_node = queue.popleft()
+            for nei in cur_node.neighbors:
+                if nei not in old_to_new:
+                    queue.append(nei)
+                    newNei = Node(nei.val, None)
+                    old_to_new[nei] = newNei
+                old_to_new[cur_node].neighbors.append(old_to_new[nei])
 
-        for old,new in oldtoNew.items():
+        """
+        for old,new in old_to_new.items():
             for nei in old.neighbors:
-                new.neighbors.append(oldtoNew[nei])
-        return oldtoNew[node]
+                new.neighbors.append(old_to_new[nei])
+        """
+        return old_to_new[node]
+
+# O(n+m)
+# O(N)
 
