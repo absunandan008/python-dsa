@@ -27,7 +27,7 @@ class Solution:
         stickers.sort(key=lambda x: len(x))
 
         # Convert each sticker to a Counter for easy frequency calculations
-        stickers = [collections.Counter(x) for x in stickers]
+        stickers_ = [collections.Counter(x) for x in stickers]
 
         # Memoization dictionary to store already computed results for target substrings
         memo = {}
@@ -47,7 +47,7 @@ class Solution:
             ans = float('inf')  # Initialize the answer with infinity
 
             # Try to cover the target with each sticker
-            for sticker in stickers:
+            for sticker in stickers_:
                 # If the first character of the target isn't in the sticker, skip it
                 if target_str[0] not in sticker:
                     continue

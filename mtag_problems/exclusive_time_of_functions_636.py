@@ -23,22 +23,26 @@ where the value at the ith index represents the exclusive time for the function 
 from typing import List
 
 
-class Solution:
+class Solution:  # revision, May 2024
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
-        prev_time = 0
-        exclusive_time_result = [0] * n
-        current_data_stack = []
 
-        for log in logs:
-            func_id, call_type, timestamp = log.split(":")
-            func_id = int(func_id)
-            timestamp = int(timestamp)
-            if call_type == "start":
-                if current_data_stack:
-                    exclusive_time_result[current_data_stack[-1]] += timestamp - prev_time
-                current_data_stack.append(func_id)
-                prev_time = timestamp
+        ans, stack, prev_time = [0] * n, deque(), 0  # Example: ["0:start:0", "0:start:2", "0:end:5", "1:start:6", "1:end  :6", "0:end:7"]
+
+        for log in logs:  # time-
+            id, action, timestamp = log.split(":")              # id   action  stamp    ans    stack     prev_time
+            id, timestamp = int(id), int(timestamp)             # ––––   ––––    ––––   –––––   –––––   ---------
+                                                                # 0    start     0    [0,0]   [0]       0
+            if action == "start":                               # 0    start     2    [2,0]   [0,0]     2
+                if stack:                                       # 0     end      5    [6,0]   [0]       6
+                    ans[stack[-1]] += timestamp - prev_time     # 1    start     6    [6,0]   [0,1]     6
+                stack.append(id)                                # 1     end      6    [6,1]   [0]       7
+                prev_time = timestamp                           # 0     end      7    [7,1]   []        8
             else:
-                exclusive_time_result[current_data_stack.pop()] += timestamp - prev_time + 1
+                ans[stack.pop()] += timestamp - prev_time + 1
                 prev_time = timestamp + 1
-        return exclusive_time_result
+            # print(id,action,timestamp, ans, stack)
+
+        return ans
+
+# O(N)
+# O(N)
