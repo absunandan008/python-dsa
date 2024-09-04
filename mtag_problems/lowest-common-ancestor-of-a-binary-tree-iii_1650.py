@@ -9,6 +9,33 @@ class Node:
 
 
 class Solution:
+    def getDepth(self, node: 'node') -> int:
+        depth = 0
+        while node:
+            depth += 1
+            node = node.parent
+        return depth
+
+    def lowestCommonAncestorOptimal(self, p: 'Node', q: 'Node') -> 'Node':
+        if not p or not q:
+            return None
+        depth_of_p = self.getDepth(p)
+        depth_of_q = self.getDepth(q)
+
+        while depth_of_p > depth_of_q:
+            p = p.parent
+            depth_of_p -= 1
+
+        while depth_of_q > depth_of_p:
+            q = q.parent
+            depth_of_q -= 1
+
+        while p!= q:
+            p = p.parent
+            q = q.parent
+        return p
+
+
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
         ancestors_of_p = set()
 

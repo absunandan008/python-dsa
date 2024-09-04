@@ -29,27 +29,29 @@ from linkedlist.problems.AddTwoNumbers_Optimal import current
 class Solution:
     def addOperators(self, num: str, target: int) -> List[str]:
         result = []
-        def backtrack(index,path,value,last):
+
+        def backtrack(index, path, value, last):
             if index == len(num):
-                #we have reached end of num, so now compare it with target
+                # we have reached end of num, so now compare it with target
                 if target == value:
                     result.append(path)
                 return
 
-            #now backtrack over everyhthing:
+            # now backtrack over everyhthing:
             for i in range(index, len(num)):
                 if i != index and num[index] == '0':
                     break
 
-                current = int(num[index:i+1])
+                current = int(num[index:i + 1])
 
-                #if first
+                # if first
                 if index == 0:
-                    backtrack(i+1, path+str(current), current, current)
+                    backtrack(i + 1, path + str(current), current, current)
                 else:
-                    backtrack(i + 1, path +"+"+ str(current), value+current, current)
-                    backtrack(i + 1, path +"-"+ str(current), value-current, -current)
-                    backtrack(i + 1, path +"*"+ str(current), value-last + last*current, last*current)
+                    backtrack(i + 1, path + "+" + str(current), value + current, current)
+                    backtrack(i + 1, path + "-" + str(current), value - current, -current)
+                    backtrack(i + 1, path + "*" + str(current), value - last + last * current, last * current)
+
         backtrack(0, "", 0, 0)
         return result
 
