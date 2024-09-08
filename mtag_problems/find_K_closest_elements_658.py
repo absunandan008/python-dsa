@@ -21,6 +21,25 @@ Output: [1,2,3,4]
 
 
 class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        # We only need k element, so substract k from end of length
+        lo = 0
+        hi = len(arr) - k
+
+        while lo < hi:
+            mid  = lo + (hi-lo)//2
+
+            # not see is mid number is near to x or mid+k index number is near to k
+            # if mid is near to k then move hi to mid else move lo to mid+1
+            if x - arr[mid] > arr[mid+k] - x:
+                # so mid+k is near to x
+                lo = mid + 1
+            else:
+                hi = mid
+        return arr[lo:lo+k]
+        # O(log(N-k)) for search and k to build the array = O(log(N-k) + k)
+        #Space = O(1)
+
     def findClosestElementsNonOptimal(self, arr: List[int], k: int, x: int) -> List[int]:
         heap = []
         for i in range(k):
