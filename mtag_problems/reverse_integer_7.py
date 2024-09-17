@@ -19,7 +19,7 @@ Output: 21
 
 
 class Solution:
-    def reverseNotOptimal(self, x: int) -> int:
+    def reverse(self, x: int) -> int:
         max_int = (2 ** 31) - 1
         # min_int = -(2 ** 31)
         ans = 0
