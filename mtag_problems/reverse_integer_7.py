@@ -23,22 +23,18 @@ class Solution:
         max_int = (2 ** 31) - 1
         # min_int = -(2 ** 31)
         ans = 0
+        sign = 1
         if x < 0:
             x = -1 * x
+            sign = -1
 
-            while x > 0:
-                ans = ans * 10 + (x % 10)
-                x //= 10
-                if ans > max_int:
-                    return 0
-            return -1 * ans
-        else:
-            while x > 0:
-                ans = ans * 10 + (x % 10)
-                x //= 10
-                if ans > max_int:
-                    return 0
-            return ans
+        while x != 0:
+            ans = ans * 10 + (x % 10)
+            x //= 10
+            if ans > max_int:
+                return 0
+
+        return sign * ans
 
 
 
