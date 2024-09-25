@@ -45,3 +45,5 @@ class Solution:
             missing_ranges.append([nums[n-1] + 1, upper])
 
         return missing_ranges
+        # O(N)
+        # O(1)
