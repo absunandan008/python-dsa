@@ -22,6 +22,24 @@ Output: false
 """
 
 class Solution:
+    def wordBreak_dfs(self, s: str, wordDict: List[str]) -> bool:
+        wordDict_set = set(wordDict)
+        memo = {}
+
+        def dfs(start):
+            if start == len(s):
+                return True
+            if start in memo:
+                return memo[start]
+
+            for end in range(start+1, len(s)+1):
+                if s[start:end] in wordDict_set and dfs(end):
+                    memo[start] = True
+                    return True
+            memo[start] = False
+            return False
+        return dfs(0)
+
     def wordBreak_dp(self, s: str, wordDict: List[str]) -> bool:
         wordDict_set = set(wordDict)
         dp = [False for _ in range(len(s)+1)]
