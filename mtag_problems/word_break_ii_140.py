@@ -27,15 +27,18 @@ class Solution:
         results = []
         self.backtracking(s, word_set, [], 0, results)
         return results
+        #O(n * 2^n)
+        #O(2^n)
     
     def backtracking(self, s, word_set, curr_sent, start, results):
         if len(s) == start:
             results.append(" ".join(curr_sent))
             return
 
-        for end in range(start+1, len(s)+1):
-            word = s[start:end]
+        for end in range(start, len(s)):
+            word = s[start:end+1]
             if word in word_set:
                 curr_sent.append(word)
-                self.backtracking(s,word_set,curr_sent,end,results)
+                self.backtracking(s,word_set,curr_sent,end+1,results)
                 curr_sent.pop()
+        
